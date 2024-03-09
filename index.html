@@ -1,0 +1,22 @@
+import time
+import RPi.GPIO as GPIO
+
+# GPIO 핀 번호 설정
+GPIO_PIN = 18
+
+# GPIO 설정
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(GPIO_PIN, GPIO.OUT)
+
+# 폭죽이 터지는 함수
+def firework():
+    try:
+        # 폭죽 터지는 효과
+        GPIO.output(GPIO_PIN, GPIO.HIGH)
+        time.sleep(3)  # 3초간 폭죽 효과 유지
+        GPIO.output(GPIO_PIN, GPIO.LOW)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+
+if __name__ == '__main__':
+    firework()
